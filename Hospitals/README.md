@@ -6,9 +6,11 @@ Developed using macOS 10.15.7 (build 19H15) / Xcode 12.1 (build 12A7403).
 
 The project has no pods / package dependencies, it's been written from scratch. Therefore to build and run this in the iOS Simulator, from within Xcode select the appropriate architecture you want the Simulator to use (eg. Product -> Destination -> iPhone 12 mini) and run it (Product -> Run). The app has a minimum OS of iOS 14.1.
 
+Within the Swift files I've made copious use of "//MARK: - Some code heading here", so that you can quickly navigate Xcode's popup menu (in the code editor, just above the actual code) to jump to, for instance, the tableview delegate functions, or the app lifecycle functions etc.
+
 ## Approach Taken
 
-### Connection
+### Connection to Remote URL
 
 The instructions appear to want a standard Master / Detail view app. They involve downloading data from a known URL as a .csv (http://media.nhschoices.nhs.uk/data/foi/Hospital.csv). iOS no longer supports downloading via http out of the box; instead in order to achieve that we need to add some allowances to the project's Info.plist.
 
@@ -29,6 +31,8 @@ The file is encoded as ISO Western Latin 1 rather than eg. UTF-8.
 
 Line breaks are denoted by /r/n rather than just /r, for instance.
 
+I'll assume a row is a header row if it contains "OrganisationID"
+
 Some of the data is clearly missing for some of the rows (eg. not all hospital rows have an Address2 field populated). Therefore in my Hospital.swift I'll assume only the following fields are mandatory (the rest will be optional in the Hospital class, using Swift optionals):
 
 Organisation ID
@@ -47,3 +51,4 @@ Aside from the data coming in from the file (including a "sector" String as per 
 
 ## Known Bugs
 
+- In the Xcode Simulator, when running the app, it occasionally logs "nw_protocol_get_quic_image_block_invoke dlopen libquic failed" after having finished downloading the file. It doesn't do this when running on device (iPhone or iPad) so I'm guessing it's a Simulator issue in Xcode 12.1.
