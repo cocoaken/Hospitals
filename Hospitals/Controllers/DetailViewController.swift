@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UITableViewController {
+class DetailViewController: UITableViewController, HospitalSelectionDelegate {
 
 	var hospital: Hospital? {
 		didSet {
@@ -208,5 +208,10 @@ class DetailViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+	//MARK: - HospitalSelectionDelegate protocol functions
+	func hospitalSelected(_ newHospital: Hospital) {
+	  hospital = newHospital
+	}	
 
 }

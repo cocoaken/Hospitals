@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol HospitalSelectionDelegate: class { //a protocol (which the detail view controller adheres to) to communicate object selection
+  func hospitalSelected(_ newHospital: Hospital)
+}
+
 class MasterViewController: UITableViewController {
 
 	let remoteDataURLString = "https://media.nhschoices.nhs.uk/data/foi/Hospital.csv" //use https not http
 	let firstHeaderField = "OrganisationID" //the presence of this in a row is used to differentiate a header row from a non-header row
 	var hospitals: [Hospital] = []
+	weak var delegate: HospitalSelectionDelegate? //an object conforming to the protocol (i.e. the detail view), allowing the master view to set the object for the detail view to show
 
 
 	//MARK: - View Controller lifecycle
@@ -250,5 +255,17 @@ class MasterViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+	
+	//MARK: - UITableViewDelegate functions
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let selectedHospital = hospitals[indexPath.row]
+
+		delegate?.hospitalSelected(selectedHospital)
+		if let detailViewController = delegate as? DetailViewController {
+			splitViewController?.showDetailViewController(detailViewController, sender: nil)
+		}
+	}
+
 
 }
