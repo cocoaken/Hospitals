@@ -49,6 +49,7 @@
 		BE779657255DCFE3006A5BEA /* HospitalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE77965B255DCFE3006A5BEA /* HospitalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalsUITests.swift; sourceTree = "<group>"; };
 		BE77965D255DCFE3006A5BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE77966C255DD17B006A5BEA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 		BE779638255DCFE0006A5BEA /* Hospitals */ = {
 			isa = PBXGroup;
 			children = (
+				BE77966C255DD17B006A5BEA /* README.md */,
 				BE779639255DCFE0006A5BEA /* AppDelegate.swift */,
 				BE77963B255DCFE0006A5BEA /* SceneDelegate.swift */,
 				BE77963D255DCFE0006A5BEA /* ViewController.swift */,
