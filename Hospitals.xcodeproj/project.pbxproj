@@ -16,6 +16,9 @@
 		BE779651255DCFE2006A5BEA /* HospitalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779650255DCFE2006A5BEA /* HospitalsTests.swift */; };
 		BE77965C255DCFE3006A5BEA /* HospitalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77965B255DCFE3006A5BEA /* HospitalsUITests.swift */; };
 		BE779686255DD93A006A5BEA /* RemoteDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779685255DD93A006A5BEA /* RemoteDataTests.swift */; };
+		BE77968F255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
+		BE779690255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
+		BE779691255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,7 @@
 		BE77966C255DD17B006A5BEA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BE779685255DD93A006A5BEA /* RemoteDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataTests.swift; sourceTree = "<group>"; };
 		BE77968D255DDA77006A5BEA /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		BE77968E255DDBC8006A5BEA /* Hospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		BE779677255DD78F006A5BEA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BE77968E255DDBC8006A5BEA /* Hospital.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE77963E255DCFE0006A5BEA /* ViewController.swift in Sources */,
+				BE77968F255DDBC8006A5BEA /* Hospital.swift in Sources */,
 				BE77963A255DCFE0006A5BEA /* AppDelegate.swift in Sources */,
 				BE77963C255DCFE0006A5BEA /* SceneDelegate.swift in Sources */,
 			);
@@ -293,6 +299,7 @@
 			files = (
 				BE779651255DCFE2006A5BEA /* HospitalsTests.swift in Sources */,
 				BE779686255DD93A006A5BEA /* RemoteDataTests.swift in Sources */,
+				BE779690255DDBC8006A5BEA /* Hospital.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE77965C255DCFE3006A5BEA /* HospitalsUITests.swift in Sources */,
+				BE779691255DDBC8006A5BEA /* Hospital.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
