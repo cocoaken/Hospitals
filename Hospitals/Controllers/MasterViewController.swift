@@ -201,6 +201,8 @@ class MasterViewController: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		let hospital = hospitals[indexPath.row]
+		cell.textLabel?.text = hospital.organisationName
 		return cell
 	}
 	
