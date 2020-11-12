@@ -15,6 +15,7 @@
 		BE779646255DCFE2006A5BEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE779644255DCFE2006A5BEA /* LaunchScreen.storyboard */; };
 		BE779651255DCFE2006A5BEA /* HospitalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779650255DCFE2006A5BEA /* HospitalsTests.swift */; };
 		BE77965C255DCFE3006A5BEA /* HospitalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77965B255DCFE3006A5BEA /* HospitalsUITests.swift */; };
+		BE779686255DD93A006A5BEA /* RemoteDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779685255DD93A006A5BEA /* RemoteDataTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		BE77965B255DCFE3006A5BEA /* HospitalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalsUITests.swift; sourceTree = "<group>"; };
 		BE77965D255DCFE3006A5BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE77966C255DD17B006A5BEA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BE779685255DD93A006A5BEA /* RemoteDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataTests.swift; sourceTree = "<group>"; };
+		BE77968D255DDA77006A5BEA /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				BE77966C255DD17B006A5BEA /* README.md */,
+				BE77968D255DDA77006A5BEA /* TODO.md */,
 				BE779639255DCFE0006A5BEA /* AppDelegate.swift */,
 				BE77963B255DCFE0006A5BEA /* SceneDelegate.swift */,
-				BE77963D255DCFE0006A5BEA /* ViewController.swift */,
+				BE779681255DD826006A5BEA /* Controllers */,
+				BE779677255DD78F006A5BEA /* Models */,
 				BE77963F255DCFE0006A5BEA /* Main.storyboard */,
 				BE779642255DCFE2006A5BEA /* Assets.xcassets */,
 				BE779644255DCFE2006A5BEA /* LaunchScreen.storyboard */,
@@ -116,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				BE779650255DCFE2006A5BEA /* HospitalsTests.swift */,
+				BE779685255DD93A006A5BEA /* RemoteDataTests.swift */,
 				BE779652255DCFE2006A5BEA /* Info.plist */,
 			);
 			path = HospitalsTests;
@@ -128,6 +134,21 @@
 				BE77965D255DCFE3006A5BEA /* Info.plist */,
 			);
 			path = HospitalsUITests;
+			sourceTree = "<group>";
+		};
+		BE779677255DD78F006A5BEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BE779681255DD826006A5BEA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE77963D255DCFE0006A5BEA /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE779651255DCFE2006A5BEA /* HospitalsTests.swift in Sources */,
+				BE779686255DD93A006A5BEA /* RemoteDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
