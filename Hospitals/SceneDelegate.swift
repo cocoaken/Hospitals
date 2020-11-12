@@ -19,9 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard
 			let splitViewController = window?.rootViewController as? UISplitViewController,
 			let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
-			let rightNavController = splitViewController.viewControllers.last as? UINavigationController,
+			//let rightNavController = splitViewController.viewControllers.last as? UINavigationController,
 			let masterViewController = leftNavController.viewControllers.first as? MasterViewController,
-			let detailViewController = rightNavController.viewControllers.first as? DetailViewController
+			//let detailViewController = rightNavController.viewControllers.first as? DetailViewController
+			let detailViewController = (splitViewController.viewControllers.last as? UINavigationController)?.topViewController as? DetailViewController
 		else {
 			fatalError()
 		}
@@ -29,6 +30,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let firstHospital = masterViewController.hospitals.first
 		detailViewController.hospital = firstHospital
 		masterViewController.delegate = detailViewController
+		
+		detailViewController.navigationItem.leftItemsSupplementBackButton = true
+		detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
