@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MasterViewController.swift
 //  Hospitals
 //
 //  Created by ken on 12/11/2020.
@@ -7,23 +7,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MasterViewController: UITableViewController {
 
 	let remoteDataURLString = "https://media.nhschoices.nhs.uk/data/foi/Hospital.csv" //use https not http
 	let firstHeaderField = "OrganisationID" //the presence of this in a row is used to differentiate a header row from a non-header row
 	var hospitals: [Hospital] = []
 
-	//MARK: - View Controller lifecycle
 
+	//MARK: - View Controller lifecycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.clearsSelectionOnViewWillAppear = false //preserve selection between presentations
 		if hospitals.isEmpty { //no data has been loaded yet, or the VC has been purged from memory so needs to re-initialise array
 			downloadHospitalData()
 		}
-	}
+    }
 
 	//MARK: - Download Hospital Data
-	
+
 	func downloadHospitalData() {
 		URLCache.shared.removeAllCachedResponses()
 		if let remoteDataURL = URL(string: remoteDataURLString) { //make the URL
@@ -43,6 +45,7 @@ class ViewController: UIViewController {
 						//do the following (UI updates) on the main thread
 						DispatchQueue.main.async {
 							self.hospitals = hospitals
+							self.tableView.reloadData()
 						}
 					}
 				} else {
@@ -56,21 +59,21 @@ class ViewController: UIViewController {
 		}
 	}
 
-	
+
 	//MARK: - Transform .csv file into array of objects
-	
+
 	func transformFileContentsIntoObjects(_ fileContents: String) -> [Hospital] {
 		let allRows = transformStringIntoRows(fileContents: fileContents)
 		let usableRows = removeHeaderRow(allRows: allRows)
 		let hospitals = transformRowsIntoObjects(usableRows: usableRows)
 		return hospitals
 	}
-	
+
 	func transformStringIntoRows(fileContents: String) -> [String] {
 		let rows = fileContents.components(separatedBy: "\r\n")
 		return rows
 	}
-	
+
 	func removeHeaderRow(allRows: [String]) -> [String] {
 		var rows = allRows
 		let firstRow = rows[0]
@@ -79,7 +82,7 @@ class ViewController: UIViewController {
 		}
 		return rows
 	}
-	
+
 	func transformRowsIntoObjects(usableRows: [String]) -> [Hospital] {
 		
 		//Order of columns in the .csv file, including array indexes (for referring to them in a minute):
@@ -189,5 +192,61 @@ class ViewController: UIViewController {
 		return hospitals
 	}
 
-}
 
+    // MARK: - Table view data source
+
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return hospitals.count
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		return cell
+	}
+	
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

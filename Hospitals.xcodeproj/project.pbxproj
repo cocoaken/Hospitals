@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BE77963A255DCFE0006A5BEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779639255DCFE0006A5BEA /* AppDelegate.swift */; };
 		BE77963C255DCFE0006A5BEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77963B255DCFE0006A5BEA /* SceneDelegate.swift */; };
-		BE77963E255DCFE0006A5BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77963D255DCFE0006A5BEA /* ViewController.swift */; };
 		BE779641255DCFE0006A5BEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE77963F255DCFE0006A5BEA /* Main.storyboard */; };
 		BE779643255DCFE2006A5BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE779642255DCFE2006A5BEA /* Assets.xcassets */; };
 		BE779646255DCFE2006A5BEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE779644255DCFE2006A5BEA /* LaunchScreen.storyboard */; };
@@ -19,6 +18,12 @@
 		BE77968F255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
 		BE779690255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
 		BE779691255DDBC8006A5BEA /* Hospital.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE77968E255DDBC8006A5BEA /* Hospital.swift */; };
+		BE779699255DEFBE006A5BEA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779698255DEFBE006A5BEA /* MasterViewController.swift */; };
+		BE77969A255DEFBE006A5BEA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779698255DEFBE006A5BEA /* MasterViewController.swift */; };
+		BE77969B255DEFBE006A5BEA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE779698255DEFBE006A5BEA /* MasterViewController.swift */; };
+		BE7796A3255DF29B006A5BEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7796A2255DF29B006A5BEA /* DetailViewController.swift */; };
+		BE7796A4255DF29B006A5BEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7796A2255DF29B006A5BEA /* DetailViewController.swift */; };
+		BE7796A5255DF29B006A5BEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7796A2255DF29B006A5BEA /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +47,6 @@
 		BE779636255DCFDF006A5BEA /* Hospitals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hospitals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE779639255DCFE0006A5BEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE77963B255DCFE0006A5BEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE77963D255DCFE0006A5BEA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE779640255DCFE0006A5BEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE779642255DCFE2006A5BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE779645255DCFE2006A5BEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		BE779685255DD93A006A5BEA /* RemoteDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataTests.swift; sourceTree = "<group>"; };
 		BE77968D255DDA77006A5BEA /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		BE77968E255DDBC8006A5BEA /* Hospital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital.swift; sourceTree = "<group>"; };
+		BE779698255DEFBE006A5BEA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		BE7796A2255DF29B006A5BEA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +157,8 @@
 		BE779681255DD826006A5BEA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BE77963D255DCFE0006A5BEA /* ViewController.swift */,
+				BE779698255DEFBE006A5BEA /* MasterViewController.swift */,
+				BE7796A2255DF29B006A5BEA /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -286,8 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE77963E255DCFE0006A5BEA /* ViewController.swift in Sources */,
+				BE779699255DEFBE006A5BEA /* MasterViewController.swift in Sources */,
 				BE77968F255DDBC8006A5BEA /* Hospital.swift in Sources */,
+				BE7796A3255DF29B006A5BEA /* DetailViewController.swift in Sources */,
 				BE77963A255DCFE0006A5BEA /* AppDelegate.swift in Sources */,
 				BE77963C255DCFE0006A5BEA /* SceneDelegate.swift in Sources */,
 			);
@@ -297,7 +305,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE77969A255DEFBE006A5BEA /* MasterViewController.swift in Sources */,
 				BE779651255DCFE2006A5BEA /* HospitalsTests.swift in Sources */,
+				BE7796A4255DF29B006A5BEA /* DetailViewController.swift in Sources */,
 				BE779686255DD93A006A5BEA /* RemoteDataTests.swift in Sources */,
 				BE779690255DDBC8006A5BEA /* Hospital.swift in Sources */,
 			);
@@ -309,6 +319,8 @@
 			files = (
 				BE77965C255DCFE3006A5BEA /* HospitalsUITests.swift in Sources */,
 				BE779691255DDBC8006A5BEA /* Hospital.swift in Sources */,
+				BE77969B255DEFBE006A5BEA /* MasterViewController.swift in Sources */,
+				BE7796A5255DF29B006A5BEA /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
