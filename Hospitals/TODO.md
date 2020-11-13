@@ -5,6 +5,6 @@ x 2 split data into rows
 x 3 split rows into objects
 x 4 show hospital list in HospitalMasterView
 x 5 show selected hospital detail in HospitalDetailView
-6 add search field
+x 6 add search field
 
 

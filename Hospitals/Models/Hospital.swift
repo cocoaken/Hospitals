@@ -44,7 +44,15 @@ class Hospital {
 	//I'll assume the rest of the fields listed in the .csv header are optional, and that the .csv might not have data in these fields for every hospital (eg. not all hospitals might have a website listed etc.)
 	var organisationType: String? = nil
 	var subType: String? = nil
-	var sector: String? = nil
+	var sector: String? = nil {
+		didSet {
+			if sector?.lowercased().contains("nhs") == true {
+				self.hospitalSector = .nhs
+			} else {
+				self.hospitalSector = .independent
+			}
+		}
+	}
 	var hospitalSector: HospitalSector? = nil //used for searching by NHS / Independent. Set during import based on text value of "sector"
 	var organisationStatus: String? = nil
 	var isPimsManaged: Bool? = nil //I don't know what this means, so I'll assume it is allowed to be optional rather than set it to either true or false by default (in case that has repercussions that I'm not aware of)

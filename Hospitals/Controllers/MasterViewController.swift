@@ -69,6 +69,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
 						DispatchQueue.main.async {
 							self.hospitals = hospitals
 							self.tableView.reloadData()
+							self.delegate?.hospitalSelected(hospitals.first!) //select the first hospital just to show something in detail view upon launch (only works in big iPhones / iPads, and even then when in landscape (showing both detail & master view controllers, not portrait (which launches the app in detail view only, so this vc doesn't automatically start downloading / importing until you move to it from the detail vc)
 						}
 					}
 				} else {
@@ -84,6 +85,11 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
 
 
 	//MARK: - Transform .csv file into array of objects
+	
+	func occurrencesOfSubstring(string: String, substring: String) -> Int {
+		let components =  string.components(separatedBy:substring)
+		return components.count - 1 //because substring is used to separate items, there'll be more components (by 1) than instances of substring, so decrement the result by 1 in order to get number of occurences of substring
+	}
 
 	func transformFileContentsIntoObjects(_ fileContents: String) -> [Hospital] {
 		let allRows = transformStringIntoRows(fileContents: fileContents)
@@ -94,6 +100,9 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
 
 	func transformStringIntoRows(fileContents: String) -> [String] {
 		let rows = fileContents.components(separatedBy: "\r\n")
+		print("\(occurrencesOfSubstring(string: fileContents, substring: "\r\n")) instances of \\r\\n")
+		print("\(occurrencesOfSubstring(string: fileContents, substring: "\r")) instances of \\r")
+		print("\(occurrencesOfSubstring(string: fileContents, substring: "\n")) instances of \\n")
 		return rows
 	}
 
@@ -147,11 +156,6 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
 					}
 					if !fields[4].isEmpty {
 						hospital.sector = fields[4]
-						if fields[4].lowercased().contains("nhs") {
-							hospital.hospitalSector = .nhs
-						} else {
-							hospital.hospitalSector = .independent
-						}
 					}
 					if !fields[5].isEmpty {
 						hospital.organisationStatus = fields[5]
