@@ -33,13 +33,15 @@ Line breaks are denoted by /r/n rather than just /r, for instance.
 
 I'll assume a row is a header row if it contains "OrganisationID"
 
-Some of the data is clearly missing for some of the rows (eg. not all hospital rows have an Address2 field populated). Therefore in my Hospital.swift I'll assume only the following fields are mandatory (the rest will be optional in the Hospital class, using Swift optionals):
+Some of the data is clearly missing for some of the rows (eg. not all hospital rows have an Address2 field populated). Therefore in my Hospital.swift I'll assume only the following 3 fields are mandatory (the rest will be optional in the Hospital class, using Swift optionals):
 
 Organisation ID
 
 Organisation Code
 
 Organisation Name
+
+All other fields are considered optional.
 
 IsPimsManaged is clearly a Boolean so I'll store it as such.
 
