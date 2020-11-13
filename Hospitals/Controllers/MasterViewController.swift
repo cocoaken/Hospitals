@@ -11,12 +11,21 @@ protocol HospitalSelectionDelegate: class { //a protocol (which the detail view 
   func hospitalSelected(_ newHospital: Hospital)
 }
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
 
 	let remoteDataURLString = "https://media.nhschoices.nhs.uk/data/foi/Hospital.csv" //use https not http
 	let firstHeaderField = "OrganisationID" //the presence of this in a row is used to differentiate a header row from a non-header row
 	var hospitals: [Hospital] = []
 	weak var delegate: HospitalSelectionDelegate? //an object conforming to the protocol (i.e. the detail view), allowing the master view to set the object for the detail view to show
+	var filteredHospitals: [Hospital] = [] //used for the subset containing the search term
+	let searchController: UISearchController = UISearchController(searchResultsController: nil) //use self as search results controller (i.e. show results in this controller's view)
+	var isSearchBarEmpty: Bool {
+		return searchController.searchBar.text?.isEmpty ?? true
+	}
+	var isFiltering: Bool { //whether to show all hospitals or just subset matching the search term
+		let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+		return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
+	}
 
 
 	//MARK: - View Controller lifecycle
@@ -27,8 +36,18 @@ class MasterViewController: UITableViewController {
 		if hospitals.isEmpty { //no data has been loaded yet, or the VC has been purged from memory so needs to re-initialise array
 			downloadHospitalData()
 		}
+		//setup search
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search Hospitals"
+		searchController.searchBar.scopeButtonTitles = Hospital.HospitalSector.allCases.map { $0.rawValue }
+		searchController.searchBar.delegate = self
+		navigationItem.searchController = searchController
+		navigationItem.titleView = searchController.searchBar
+		definesPresentationContext = true
     }
 
+	
 	//MARK: - Download Hospital Data
 
 	func downloadHospitalData() {
@@ -36,7 +55,6 @@ class MasterViewController: UITableViewController {
 		if let remoteDataURL = URL(string: remoteDataURLString) { //make the URL
 			print("URL  created")
 						
-			//let session = URLSession.shared
 			let task = URLSession.shared.dataTask(with: remoteDataURL) {  (data, response, error) in
 				
 				if let data = data, let fileContents = String(data: data, encoding: .isoLatin1) { //the supplied .csv file is encoded as Western Latin 1 (aka ISO Latin 1), not UTF-8 etc.
@@ -198,19 +216,28 @@ class MasterViewController: UITableViewController {
 	}
 
 
-    // MARK: - Table view data source
+	// MARK: - Table view data source
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if isFiltering {
+			return filteredHospitals.count
+		}
 		return hospitals.count
 	}
+
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-		let hospital = hospitals[indexPath.row]
+		let hospital: Hospital
+		if isFiltering {
+			hospital = filteredHospitals[indexPath.row]
+		} else {
+			hospital = hospitals[indexPath.row]
+		}
 		cell.textLabel?.text = hospital.organisationName
 		return cell
 	}
-	
+		
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -256,10 +283,16 @@ class MasterViewController: UITableViewController {
     }
     */
 	
+	
 	//MARK: - UITableViewDelegate functions
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let selectedHospital = hospitals[indexPath.row]
+		let selectedHospital: Hospital
+		if isFiltering {
+			selectedHospital = filteredHospitals[indexPath.row]
+		} else {
+			selectedHospital = hospitals[indexPath.row]
+		}
 
 		delegate?.hospitalSelected(selectedHospital)
 		if let detailViewController = delegate as? DetailViewController,
@@ -268,5 +301,38 @@ class MasterViewController: UITableViewController {
 		}
 	}
 
+	
+	//MARK: - UISearchResultsUpdating protocol functions
+
+	func updateSearchResults(for searchController: UISearchController) {
+		let searchBar = searchController.searchBar
+		let hospitalSector = Hospital.HospitalSector(rawValue: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+		filterContentForSearchText(searchBar.text!, hospitalSector: hospitalSector)
+	}
+	
+	
+	//MARK: - UISearchBarDelegate protocol functions
+	
+	func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+		let hospitalSector = Hospital.HospitalSector(rawValue: searchBar.scopeButtonTitles![selectedScope])
+		filterContentForSearchText(searchBar.text!, hospitalSector: hospitalSector)
+	}
+
+	
+	//MARK:- Search
+	
+	func filterContentForSearchText(_ searchText: String, hospitalSector: Hospital.HospitalSector? = nil) {
+		filteredHospitals = hospitals.filter { (hospital: Hospital) -> Bool in
+			let doesHospitalSectorMatch = hospitalSector == .all || hospital.hospitalSector == hospitalSector
+			
+			if isSearchBarEmpty {
+				return doesHospitalSectorMatch
+			} else {
+				return doesHospitalSectorMatch && hospital.organisationName.lowercased().contains(searchText.lowercased()) //check lowercased versions of both search term & organisationName, to make a case insensitive search
+			}
+		}
+		tableView.reloadData()
+	}
+	
 
 }

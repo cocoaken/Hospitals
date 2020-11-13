@@ -80,7 +80,7 @@ class DetailViewController: UITableViewController, HospitalSelectionDelegate {
 		case 3:
 			return "Contact"
 		default:
-			return nil
+			return nil //we shouldn't ever get this far
 		}
 	}
 	
